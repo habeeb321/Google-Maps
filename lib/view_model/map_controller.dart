@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
+import 'package:google_maps/service/api_service.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '/model/locations.dart' as locations;
 
 class MapController extends GetxController {
   final RxMap<String, Marker> markers = <String, Marker>{}.obs;
 
   Future<void> onMapCreated(GoogleMapController controller) async {
-    final googleOffices = await locations.getGoogleOffices();
+    final googleOffices = await ApiService.getGoogleOffices();
     markers.clear();
     for (final office in googleOffices.offices) {
       final marker = Marker(
